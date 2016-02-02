@@ -2,7 +2,6 @@ import java.io.*;
 
 public class Worker
 {
-  private String m_startsWith;
   // can easily be run 'stand alone'...
   public static void main(String args[]) throws Exception
   {
@@ -11,19 +10,15 @@ public class Worker
 
   private void go(String args[]) throws Exception
   {
-    m_startsWith = args[0].toUpperCase();
+    String startsWith = args[0].toUpperCase();
     File f = new File("./files");
 
-    /*
     FilenameFilter task = (File dir, String name) ->
     {
-      return name.toUpperCase().startsWith(m_startsWith);
+      return name.toUpperCase().startsWith(startsWith);
     };
-    */
-    //String[] files = f.list(task);
-    //String[] files = f.list((File dir, String name) -> { return name.toUpperCase().startsWith(m_startsWith);});
+    String[] files = f.list(task);
 
-    String[] files = f.list(new Filter());
     for (String s : files)
     {
       BufferedReader in = new BufferedReader(new FileReader("./files/"+s));
@@ -39,14 +34,4 @@ public class Worker
       }
     }
   }
-
-  private class Filter implements FilenameFilter
-  {
-    @Override
-    public boolean accept(File dir, String name)
-    {
-      return name.toUpperCase().startsWith(m_startsWith);
-    }
-  }
-
 }
