@@ -25,9 +25,9 @@ public class Worker
       String line = in.readLine();
       while (line != null)
       {
-        if (line.toUpperCase().contains("SNICKERS"))
+        if (line.toUpperCase().contains(args[1].toUpperCase()))
         {
-            System.out.printf("Found snickers in %s ...%n", s);
+            System.out.printf("Found %s in %s ...%n", args[1], s);
             break;
         }
         line = in.readLine();

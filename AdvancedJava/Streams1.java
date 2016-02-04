@@ -39,14 +39,14 @@ public class Streams1
 
   private Writer getWriter() throws IOException
   {
-    return new FileWriter("test.txt");
-    //return new Encrypt(new FileWriter("test.txt"));
+    //return new FileWriter("test.txt");
+    return new Encrypt(new FileWriter("test.txt"));
   }
 
   private BufferedReader getReader() throws IOException
   {
-    return new BufferedReader(new FileReader("test.txt"));
-    //return new Decrypt(new FileReader("test.txt"));
+    //return new BufferedReader(new FileReader("test.txt"));
+    return new Decrypt(new FileReader("test.txt"));
   }
 
   public static class Decrypt extends BufferedReader
