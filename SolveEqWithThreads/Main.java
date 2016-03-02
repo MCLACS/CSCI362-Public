@@ -20,23 +20,24 @@ public class Main
 			new ArrayList<XY>());
 
 		List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
-		int range = 1000;
+		int range = 10;
 		int threads = 10;
 		int chunk = range/threads;
 		for (int n = 0; n < threads; n++)
 		{
 		  int start = (n*chunk) - (range/2);
 		  int end = start + chunk;
+		  double inc = 0.1;
 		  System.out.printf("Creating thread for range %d to %d ...%n",start,end);
 
 		  Callable<Boolean> task = () ->
 		  {
-		      for (double x = start; x < end; x=x+1)
+		      for (double x = start; x < end; x=x+inc)
 		      {
 				  double y = Math.pow(x,5) + (3.5*Math.pow(x, 4))
 				  	- (2.5*Math.pow(x, 3)) - (12.5*Math.pow(x, 2)) + (1.5*x) + 9;
 
-				  if (Math.abs(y-0.0) <= 10)
+				  if (Math.abs(y-0.0) <= 2)
 				  {
 		  			  XY ans = new XY();
 					  ans.x=x;
@@ -61,7 +62,7 @@ public class Main
 
 		for (XY o : best)
 		{
-			System.out.printf("%s = %s%n", o.x, o.y);
+			System.out.printf("%.1f = %.1f%n", o.x, o.y);
 		}
 	}
 }
