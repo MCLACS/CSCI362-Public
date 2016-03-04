@@ -20,7 +20,7 @@ public class Main
 			new ArrayList<XY>());
 
 		List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
-		int range = 10;
+		int range = 1000;
 		int threads = 10;
 		int chunk = range/threads;
 		for (int n = 0; n < threads; n++)
