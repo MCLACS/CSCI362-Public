@@ -37,7 +37,7 @@ public class Main
 				  double y = Math.pow(x,5) + (3.5*Math.pow(x, 4))
 				  	- (2.5*Math.pow(x, 3)) - (12.5*Math.pow(x, 2)) + (1.5*x) + 9;
 
-				  if (Math.abs(y-0.0) <= 2)
+				  if (Math.abs(y) <= 2)
 				  {
 		  			  XY ans = new XY();
 					  ans.x=x;
