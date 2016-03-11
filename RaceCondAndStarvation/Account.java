@@ -5,6 +5,7 @@ public class Account
 	public Account(int bal)
 	{ m_balance = bal; }
 
+ 	// synchronize this to get starvation of main thread
 	public int getBalance()
 	{ return m_balance; }
 
