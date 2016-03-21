@@ -1,4 +1,5 @@
 import java.util.concurrent.*;
+
 public class Philosopher implements Callable<Boolean>
 {
 	private final Fork m_left;
