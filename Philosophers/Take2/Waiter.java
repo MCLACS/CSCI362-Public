@@ -2,16 +2,19 @@ public class Waiter
 {
 	public synchronized boolean grabForks(Fork f1, Fork f2)
 	{
+		boolean ret = false;
 		if (f1.grab())
 		{
 			if (f2.grab())
 			{
-				return true;
+				ret = true;
+			}
+			else
+			{
+				f1.release();
 			}
 		}
-		f1.release();
-		f2.release();
-		return false;
+		return ret;
 	}
 
 	public synchronized void returnForks(Fork f1, Fork f2)
