@@ -14,7 +14,7 @@ public class Master
     for (int i = 0; i < 10; i++)
     {
       int start = (i*100);
-      int end = start + 100;
+      int end = start + 100 - 1;
       System.out.printf("Starting process for range %d-%d ...%n",start,end);
       Process p = new ProcessBuilder("java", "Worker", start+"", end+"").start();
       list.add(p);
