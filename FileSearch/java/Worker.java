@@ -10,12 +10,22 @@ public class Worker
 
   private void go(String args[]) throws Exception
   {
-    String startsWith = args[0].toUpperCase();
+    final String startsWith = args[0].toUpperCase();
     File f = new File("./files");
 
+    /*
+    // Lambda
     FilenameFilter task = (File dir, String name) ->
     {
       return name.toUpperCase().startsWith(startsWith);
+    };*/
+    FilenameFilter task = new FilenameFilter()
+    {
+      @Override
+      public boolean accept(File dir, String name)
+      {
+        return name.toUpperCase().startsWith(startsWith);
+      }
     };
     String[] files = f.list(task);
 
