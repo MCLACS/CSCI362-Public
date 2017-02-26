@@ -10,8 +10,7 @@ public class Main
 
 	private void go() throws Exception
 	{
-		List<Integer> allPrimes = Collections.synchronizedList(
-			new ArrayList<Integer>());
+		List<Integer> allPrimes = Collections.synchronizedList(new ArrayList<Integer>());
 
 		List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
 		for (int n = 0; n < 10; n++)
@@ -20,33 +19,7 @@ public class Main
 		  int end = start + 100;
 		  System.out.printf("Creating thread for range %d-%d ...%n",start,end);
 
-		  Callable<Boolean> task = () ->
-		  {
-		      for (int i = start; i < end; i++)
-		      {
-		        if (i == 0 || i == 1)
-		        {
-		          continue;
-		        }
-		        else
-		        {
-		            Thread.sleep(50);
-		            boolean prime = true;
-		            for (int j = 2; j < i; j++)
-		            {
-		                if (i%j == 0)
-		                {
-		                    prime = false;
-		                    break;
-		                }
-		            }
-
-		            if (prime)
-						allPrimes.add(i);
-		        }
-		      }
-			  return true;
-		  };
+		  Callable<Boolean> task = new MyThread(start, end, allPrimes);
 		  tasks.add(task);
 		}
 
@@ -64,5 +37,56 @@ public class Main
 		{
 			System.out.printf("%s is prime.%n", i);
 		}
+	}
+	
+	public class MyThread implements Callable<Boolean>
+	{
+		private int m_start;
+		private int m_end;
+		private List<Integer> m_allPrimes;
+		
+		public MyThread(int start, int end, List<Integer> allPrimes)
+		{
+			m_start = start;
+			m_end = end;
+			m_allPrimes = allPrimes;
+		}
+		
+		@Override
+		public 	Boolean call()
+		{
+		      for (int i = m_start; i < m_end; i++)
+		      {
+		        if (i == 0 || i == 1)
+		        {
+		          continue;
+		        }
+		        else
+		        {
+		        	try
+		        	{
+		            	Thread.sleep(10);
+		        	}
+		        	catch (Exception e)
+		        	{
+		        		e.printStackTrace();
+		        	}
+		        	
+		            boolean prime = true;
+		            for (int j = 2; j < i; j++)
+		            {
+		                if (i%j == 0)
+		                {
+		                    prime = false;
+		                    break;
+		                }
+		            }
+
+		            if (prime)
+						m_allPrimes.add(i);
+		        }
+		      }
+			  return true;
+		}	
 	}
 }
