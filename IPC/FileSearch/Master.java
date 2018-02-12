@@ -4,7 +4,8 @@ import java.util.*;
 public class Master
 {
   private static final char alpha[] =
-    "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    // "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    "astuz".toCharArray();
 
   public static void main(String args[]) throws Exception
   {
@@ -18,7 +19,7 @@ public class Master
     String keyword = in.nextLine();
     
     List<Process> list = new ArrayList<Process>();
-    for (int i = 0; i < 26; i++)
+    for (int i = 0; i < alpha.length; i++)
     {
       System.out.printf("Starting process for files starting with %s ...%n",
         alpha[i]+"");
