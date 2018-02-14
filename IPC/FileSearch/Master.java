@@ -19,19 +19,25 @@ public class Master
     String keyword = in.nextLine();
     
     List<Process> list = new ArrayList<Process>();
+    
     for (int i = 0; i < alpha.length; i++)
     {
-      System.out.printf("Starting process for files starting with %s ...%n",
-        alpha[i]+"");
-      Process p = new ProcessBuilder("java", "Worker", alpha[i]+"",
-        keyword).start();
+      System.out.printf("Starting process for files starting with %s ...%n", alpha[i]+"");
+      Process p = new ProcessBuilder("java", "Worker", alpha[i]+"", keyword).start();
       list.add(p);
     }
 
-    for (Process p : list)
-    {
-      search(p);
-    }
+    // for (Process p : list)
+    // {
+    //   search(p);
+    // }
+
+    list.stream().forEach(p -> {
+        try 
+        { search(p); } 
+        catch (Exception e) 
+        { throw new Error(e);}
+      });
   }
 
   private void search(Process p) throws Exception
@@ -40,11 +46,15 @@ public class Master
     p.waitFor();
     System.out.printf("Worker done ...%n");
     BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"));
-    String line = br.readLine();
-    while (line != null)
-    {
-      System.out.println(line);
-      line = br.readLine();
-    }
+
+    // String line = br.readLine();
+    // while (line != null)
+    // {
+    //   System.out.println(line);
+    //   line = br.readLine();
+    // }
+    
+    br.lines().forEach(l -> System.out.println(l));
+    
   }
 }
