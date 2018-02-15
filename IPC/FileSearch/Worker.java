@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Worker
 {
@@ -25,14 +26,13 @@ public class Worker
     String[] files = f.list((File dir, String name) -> 
       {return name.toUpperCase().startsWith(startsWith); });
 
-    files.stream().forEach(s -> {
+    Arrays.stream(files).forEach(s -> {
       try {
         BufferedReader in = new BufferedReader(new FileReader("./files/"+s));
-        in.lines().forEach(l - > {
+        in.lines().forEach(line -> {
           if (line.toUpperCase().contains(args[1].toUpperCase()))
           {
               System.out.printf("Found %s in %s ...%n", args[1], s);
-              break;
           }
         });
       } 
