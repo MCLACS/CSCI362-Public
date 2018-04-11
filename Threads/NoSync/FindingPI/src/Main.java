@@ -3,8 +3,8 @@ import java.util.concurrent.*;
 
 public class Main
 {
-	private final static int P = 8000000;
-	private final static int N = 4;
+	private final static int P = 800000;
+	private final static int N = 10;
 	private static int m_id = 0;
 	
 	public static void main(String[] args) throws Exception
@@ -40,7 +40,6 @@ public class Main
 		private int m_code;
 		private int m_start;
 		private int m_end;
-		private List<Integer> m_allPrimes;
 		
 		public MyThread(int start, int end)
 		{

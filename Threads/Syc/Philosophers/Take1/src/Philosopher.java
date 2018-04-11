@@ -41,7 +41,7 @@ public class Philosopher implements Callable<Boolean>
 				System.out.printf("%s is eating...%n", m_name);
 				Thread.sleep(eatTime);
 
-				System.out.printf("%s is putting down both fokrs...%n", m_name);
+				System.out.printf("%s is putting down both forks...%n", m_name);
 				m_left.release();
 				m_right.release();
 			}

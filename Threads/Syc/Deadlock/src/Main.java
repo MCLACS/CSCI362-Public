@@ -28,20 +28,20 @@ public class Main
 				  		int flip = rand.nextInt(100);
 						if (flip < 50)
 						{
-							//synchronized (rand)
-						    //{
-								//account1.withdraw(amount);
-								//account2.deposit(amount);
-							//}
+							// synchronized (rand)
+						 //   {
+							// 	account1.withdraw(amount);
+							// 	account2.deposit(amount);
+							// }
 				  			account1.transfer(account2, amount);
 						}
 						else
 						{
-							//synchronized (rand)
-							//{
-								//account2.withdraw(amount);
-								//account1.deposit(amount);
-							//}
+							// synchronized (rand)
+							// {
+							// 	account2.withdraw(amount);
+							// 	account1.deposit(amount);
+							// }
 							account2.transfer(account1, amount);
 						}
 					}

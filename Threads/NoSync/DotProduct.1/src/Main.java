@@ -12,10 +12,10 @@ public class Main
   private void go() throws Exception
   {
     Scanner in = new Scanner(System.in);
-    System.out.print("Enter the filename for vector A: ");
+    System.out.println("Enter the filename for vector A: ");
     List<Integer> A = readVector(in.nextLine());
-    System.out.print("Enter the filename for vector B: ");
-	List<Integer> B = readVector(in.nextLine());
+    System.out.println("Enter the filename for vector B: ");
+	  List<Integer> B = readVector(in.nextLine());
 
     if (A.size() != B.size())
     {
@@ -37,11 +37,28 @@ public class Main
 	  for (int i = 0; i < A.size(); i++)
 	  {
 		  final int item = i;
-		  Callable<Boolean> task = () ->
+      
+      // outer class....
+      //Callable<Boolean> task = new MyCallable(products, item, A, B);
+		  
+		  // anaon...
+		  // Callable<Boolean> task = Callable<Boolean> ()
+		  // {
+		  //   @Override
+		  //   public Boolean call()
+		  //   {
+    // 			  products[item] = A.get(item) * B.get(item);
+    // 			  return true;
+		  //   }
+			 // return true;
+		  // };
+		  
+  		Callable<Boolean> task = () ->
 		  {
 			  products[item] = A.get(item) * B.get(item);
 			  return true;
 		  };
+		  
 		  tasks.add(task);
 	  }
 
@@ -77,3 +94,4 @@ public class Main
 	  return ret;
   }
 }
+
